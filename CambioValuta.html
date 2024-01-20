@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Convertitore di Valuta</title>
+  </head>
+  <body>
+    <h1>Convertitore di Valuta</h1>
+
+    <label for="euro">Inserisci l'importo in Euro:</label>
+    <input type="number" id="euro">
+
+    <label for="selezioneValuta">Seleziona la valuta:</label>
+    <select id="selezioneValuta">
+      <option value="USD">Dollari statunitensi (USD)</option>
+      <option value="GBP">Sterline britanniche (GBP)</option>
+      <option value="JPY">Yen giapponesi (JPY)</option>
+      <option value="CHF">Franchi svizzeri (CHF)</option>
+    </select>
+
+    <button onclick="convertiValuta()">Converti</button>
+
+    <div id="risultatoConversione"></div>
+
+    <script>
+
+    let cambio = {
+          USD: 1.06, 
+          GBP: 0.87, 
+          JPY: 158.53,
+          CHF: 0.95,
+        };
+
+    function convertiValuta() {
+        let euro = parseFloat(document.getElementById("euro").value);
+        let valuta = document.getElementById("selezioneValuta").value;
+
+        if (!isNaN(euro)) {
+          let risultato = euro * cambio[valuta];
+          document.getElementById("risultatoConversione").textContent = `Importo convertito: ${risultato.toFixed(2)} ${valuta}`;
+        } else {
+          document.getElementById("risultatoConversione").textContent =
+            "Inserisci un importo valido in Euro.";
+        }
+    }
+    </script>
+  </body>
+</html>
